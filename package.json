@@ -1,12 +1,15 @@
 {
-  "name": "workspace",
+  "name": "Agenda mongo",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Bruno Pessoa",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.2.1"
+  }
 }
