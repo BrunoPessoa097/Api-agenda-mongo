@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { pessoaS } from '../schemas/pessoaSchema';
-//import { IPessoa } from ''
+import { IPessoa } from '../interfaces/pessoaInterface'
 
 export const addPessoa = async(req: Request, res: Response) => {
   try{
@@ -22,7 +22,7 @@ export const addPessoa = async(req: Request, res: Response) => {
     }else{
       await pessoa.save();
       res.status(200).json({
-        message: 'Pessoa Adicionada',
+        message: 'Pessoa inserida',
         inf: pessoa
       })
     }
@@ -34,3 +34,12 @@ export const addPessoa = async(req: Request, res: Response) => {
     })
   }
 }
+
+export const allPessoa = async(req: Request, res: Response) => {
+  const pessoas = await pessoaS.find();
+  res.status(200).json({
+    inf: pessoas
+  });
+}
+//export const buscarPessoa = (req:)
+//68ab8a8e9ec8be94fe0f6573

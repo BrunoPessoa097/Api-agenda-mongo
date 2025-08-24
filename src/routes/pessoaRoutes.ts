@@ -1,10 +1,11 @@
 import { Router } from 'express';
 import { padronizarPessoa } from '../middlewares/pessoaMiddleware';
-import { addPessoa } from '../controllers/pessoaControllers';
+import { addPessoa, allPessoa } from '../controllers/pessoaControllers';
 
 const pessoaRouter: Router = Router();
 
 pessoaRouter.route('/pessoa')
-  .post(padronizarPessoa, addPessoa);
+  .post(padronizarPessoa, addPessoa)
+  .get(allPessoa);
 
 export default pessoaRouter;
