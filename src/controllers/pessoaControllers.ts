@@ -73,7 +73,7 @@ export const atualizarPessoa = async(req: Request, res: Response) => {
   
   if(pessoa){
     try{
-      const atualizar = {
+      const atualizar:IPessoa = {
         ...req.body
       };
   
