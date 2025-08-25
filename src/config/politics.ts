@@ -1,3 +1,4 @@
+// Variável comtando todas as políticas de privacidade.
 const politics = {
     accelerometer: [],
     'ambient-light-sensor': [],
