@@ -110,8 +110,6 @@ export const atualizarPessoa = async(req: Request, res: Response) => {
             error
           })
         })
-  
-
     }
     // tratamento de erro.
     catch(error){
