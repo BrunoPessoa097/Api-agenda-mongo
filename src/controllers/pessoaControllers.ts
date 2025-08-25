@@ -45,19 +45,17 @@ export const buscarPessoaId = async (req: Request, res: Response) => {
   const id: string = req.params.id;
 
   try{
-    const pessoa = await pessoaS.findById(id);
-
-    if(pessoa){
-      res.status(200).json({
-        message: 'usuário encontrado',
-        inf: pessoa
+    await pessoaS.findById(id)
+      .then((dados)=>{
+        res.status(200).json({
+          message: 'Usuario encontrado',
+          inf: dados
+        })
+      }).catch((error)=>{
+        res.status(200).json({
+          message: 'Usuario nao encontado'
+        })
       });
-    }else{
-      res.status(400).json({
-        mensage: 'usuario nao encontrado',
-        id
-      });
-    }
   }catch(error){
       res.status(404).json({
         mensage: 'Erro na sua requisição',
@@ -71,7 +69,7 @@ export const atualizarPessoa = async(req: Request, res: Response) => {
     atualizado: new Date()
   }
   const id: string = req.params.id;
-  const pessoa = await pessoaS.findById(id);
+  const pessoa: IPessoa1 | any = await pessoaS.findById(id);
   
   if(pessoa){
     try{
@@ -105,8 +103,6 @@ export const atualizarPessoa = async(req: Request, res: Response) => {
       message: 'Pessoa nao emcontrada'
     })
   }
-  
-
 }
 
 export const exluirPessoa = async(req:Request, res: Response) => {
