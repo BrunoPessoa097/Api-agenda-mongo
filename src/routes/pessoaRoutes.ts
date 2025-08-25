@@ -8,6 +8,7 @@ import { addPessoa,
 
 const pessoaRouter: Router = Router();
 
+// Rotas de pessoas.
 pessoaRouter.route('/pessoa')
   .post(padronizarPessoa, addPessoa)
   .get(allPessoa);
