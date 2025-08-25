@@ -36,7 +36,7 @@ export const addPessoa = async(req: Request, res: Response) => {
 }
 
 export const allPessoa = async(req: Request, res: Response) => {
-  const pessoas = await pessoaS.find();
+  const pessoas:IPessoa1[] = await pessoaS.find();
   res.status(200).json({
     inf: pessoas
   });
@@ -64,6 +64,40 @@ export const buscarPessoaId = async (req: Request, res: Response) => {
         erro: error
       })
   }
+}
+
+export const atualizarPessoa = async(req: Request, res: Response) => {
+  req.body.data = {
+    atualizado: new Date()
+  }
+  const id: string = req.params.id;
+  const pessoa = await pessoaS.findById(id);
+  
+  if(pessoa){
+    try{
+      const atualizar = {
+        ...req.body
+      };
+  
+      const ok = await pessoaS.findByIdAndUpdate(id,atualizar)
+  
+      res.status(200).json({
+        message: 'ok',
+        infAtua: pessoa
+      })
+    }catch(error){
+      res.status(400).json({
+        message: "Error",
+        error
+      })
+    }
+  }else{
+    res.status(404).json({
+      message: 'Pessoa nao emcontrada'
+    })
+  }
+  
+
 }
 //68ab8a8e9ec8be94fe0f6573
 //{"_id":{"$oid":"68ab7afffb04adc6b30956b1"},"nome":"Lígia","email":"ligia@gmail","endereco":"Rua E","data":{"criado":{"$date":{"$numberLong":"1756068607540"}},"atualizado":{"$date":{"$numberLong":"1756068607540"}}},"__v":{"$numberInt":"0"}}
