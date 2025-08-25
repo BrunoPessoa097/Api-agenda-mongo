@@ -1,10 +1,15 @@
 import express, { Request, Response } from 'express';
 import pessoaRouter from './pessoaRoutes';
 import helmet from 'helmet';
+import cors from 'cors';
 
 const app = express();
 app.use(express.json());
 app.use(helmet ());
+app.use(cors({
+  origin: 'http://localhost',
+  methods: ['GET','POST','PUT','DELETE']
+}))
 
 app.use(pessoaRouter);
 
