@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { pessoaS } from '../schemas/pessoaSchema';
-import { IPessoa } from '../interfaces/pessoaInterface'
+import { IPessoa, IPessoa1 } from '../interfaces/pessoaInterface'
 
 export const addPessoa = async(req: Request, res: Response) => {
   try{
@@ -8,7 +8,7 @@ export const addPessoa = async(req: Request, res: Response) => {
       criado: new Date(),
       atualizado: new Date()
     }
-    const pessoa = new pessoaS({
+    const pessoa: IPessoa1 = new pessoaS({
       ...req.body
     });
 
@@ -41,5 +41,29 @@ export const allPessoa = async(req: Request, res: Response) => {
     inf: pessoas
   });
 }
-//export const buscarPessoa = (req:)
+export const buscarPessoaId = async (req: Request, res: Response) => {
+  const id: string = req.params.id;
+
+  try{
+    const pessoa = await pessoaS.findById(id);
+
+    if(pessoa){
+      res.status(200).json({
+        message: 'usuário encontrado',
+        inf: pessoa
+      });
+    }else{
+      res.status(400).json({
+        mensage: 'usuario nao encontrado',
+        id
+      });
+    }
+  }catch(error){
+      res.status(404).json({
+        mensage: 'Erro na sua requisição',
+        erro: error
+      })
+  }
+}
 //68ab8a8e9ec8be94fe0f6573
+//{"_id":{"$oid":"68ab7afffb04adc6b30956b1"},"nome":"Lígia","email":"ligia@gmail","endereco":"Rua E","data":{"criado":{"$date":{"$numberLong":"1756068607540"}},"atualizado":{"$date":{"$numberLong":"1756068607540"}}},"__v":{"$numberInt":"0"}}
