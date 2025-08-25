@@ -3,7 +3,8 @@ import { padronizarPessoa } from '../middlewares/pessoaMiddleware';
 import { addPessoa, 
         allPessoa, 
         buscarPessoaId,
-        atualizarPessoa} from '../controllers/pessoaControllers';
+        atualizarPessoa,
+        exluirPessoa} from '../controllers/pessoaControllers';
 
 const pessoaRouter: Router = Router();
 
@@ -12,6 +13,7 @@ pessoaRouter.route('/pessoa')
   .get(allPessoa);
 pessoaRouter.route('/pessoa/:id')
   .get(buscarPessoaId)
-  .put(padronizarPessoa, atualizarPessoa);
+  .put(padronizarPessoa, atualizarPessoa)
+  .delete(exluirPessoa);
 
 export default pessoaRouter;

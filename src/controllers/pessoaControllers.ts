@@ -79,12 +79,21 @@ export const atualizarPessoa = async(req: Request, res: Response) => {
         ...req.body
       };
   
-      const ok = await pessoaS.findByIdAndUpdate(id,atualizar)
+      await pessoaS.findByIdAndUpdate(id,atualizar)
+        .then((dados)=>{
+          res.status(200).json({
+            message: 'Dados Atualizados',
+            inf: atualizar
+          })
+        })
+        .catch((error)=>{
+          res.status(404).json({
+            message: "Error ao atualizar",
+            error
+          })
+        })
   
-      res.status(200).json({
-        message: 'ok',
-        infAtua: pessoa
-      })
+
     }catch(error){
       res.status(400).json({
         message: "Error",
@@ -98,6 +107,32 @@ export const atualizarPessoa = async(req: Request, res: Response) => {
   }
   
 
+}
+
+export const exluirPessoa = async(req:Request, res: Response) => {
+  const id: string = req.params.id; 
+  const exist: IPessoa1 | any = await pessoaS.findById(id);
+
+  if(exist) {
+    await pessoaS.findByIdAndDelete(id)
+      .then((e)=>{
+        res.status(200).json({
+          message: 'Usuario deletado',
+          inf: e
+        })
+      })
+      .catch((error)=>{
+        res.status(404).json({
+          mensage: 'Erro ao excluir',
+          error
+        });
+      });
+
+  }else{
+    res.status(404).json({
+      message: 'Pessoa não encontrada'
+    })
+  }
 }
 //68ab8a8e9ec8be94fe0f6573
 //{"_id":{"$oid":"68ab7afffb04adc6b30956b1"},"nome":"Lígia","email":"ligia@gmail","endereco":"Rua E","data":{"criado":{"$date":{"$numberLong":"1756068607540"}},"atualizado":{"$date":{"$numberLong":"1756068607540"}}},"__v":{"$numberInt":"0"}}
