@@ -6,7 +6,7 @@ export interface IPessoa{
   endereco: string,
   data?: {
     criado?: Date,
-    atualizado?: Data,
+    atualizado?: Date,
   }
 }
 
@@ -16,6 +16,6 @@ export interface IPessoa1 extends Document {
   endereco: string,
   data?: {
     criado?: Date,
-    atualizado?: Data,
+    atualizado?: Date,
   }
 }
