@@ -1,6 +1,7 @@
 import { Schema, model } from 'mongoose';
 import { IPessoa } from '../interfaces/pessoaInterface';
 
+// Criando schema para a tabrla pessoas
 const pessoaShema = new Schema<IPessoa>({
   nome: {type: String, require: true},
   email: {type: String, require: true},
@@ -11,4 +12,5 @@ const pessoaShema = new Schema<IPessoa>({
   }
 });
 
+// Criando o modelo e referência.
 export const pessoaS = model<IPessoa>('Pessoa',pessoaShema)
