@@ -1,8 +1,10 @@
 import express, { Request, Response } from 'express';
 import pessoaRouter from './pessoaRoutes';
+import helmet from 'helmet';
 
 const app = express();
 app.use(express.json());
+app.use(helmet ());
 
 app.use(pessoaRouter);
 
