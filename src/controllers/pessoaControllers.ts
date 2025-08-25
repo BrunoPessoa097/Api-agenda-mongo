@@ -4,29 +4,38 @@ import { IPessoa, IPessoa1 } from '../interfaces/pessoaInterface'
 
 export const addPessoa = async(req: Request, res: Response) => {
   try{
+    // Adiciona as datas nos campos em branco.
     req.body.data = {
       criado: new Date(),
       atualizado: new Date()
     }
+
+    // Criando um usuário com os parâmetros do banco de dados.
     const pessoa: IPessoa1 = new pessoaS({
       ...req.body
     });
 
+    // Verificar se nome e e-mail existem.
     const acheiNome = await pessoaS.findOne({nome: req.body.nome})
     const acheiEmail = await pessoaS.findOne({email: req.body.email})
 
+    // Caso exista.
     if(acheiNome || acheiEmail){
       res.status(404).json({
         message: 'Nome ou e-mail ja cadastrados.'
       });
-    }else{
+    }
+    // Caso usuário e e-mail não exista.
+    else{
       await pessoa.save();
       res.status(200).json({
         message: 'Pessoa inserida',
         inf: pessoa
       })
     }
-  }catch(error){
+  }
+  // Saída em caso de erro.
+  catch(error){
     console.log(error);
     res.status(400).json({
       message: 'Problema ao cadastrar',
@@ -35,16 +44,20 @@ export const addPessoa = async(req: Request, res: Response) => {
   }
 }
 
+
 export const allPessoa = async(req: Request, res: Response) => {
+  // Buscando todos os usuários.
   const pessoas:IPessoa1[] = await pessoaS.find();
   res.status(200).json({
     inf: pessoas
   });
 }
 export const buscarPessoaId = async (req: Request, res: Response) => {
+  // Recebendo o id.
   const id: string = req.params.id;
 
   try{
+    // Buscanco e retornando o usuário com base pelo id.
     await pessoaS.findById(id)
       .then((dados)=>{
         res.status(200).json({
@@ -56,7 +69,9 @@ export const buscarPessoaId = async (req: Request, res: Response) => {
           message: 'Usuario nao encontado'
         })
       });
-  }catch(error){
+  }
+  // Tratamento de erro.
+  catch(error){
       res.status(404).json({
         mensage: 'Erro na sua requisição',
         erro: error
@@ -65,18 +80,23 @@ export const buscarPessoaId = async (req: Request, res: Response) => {
 }
 
 export const atualizarPessoa = async(req: Request, res: Response) => {
+  // Adicionando no parâmetros data da atualização do usuário.
   req.body.data = {
     atualizado: new Date()
   }
+  
+  // Recendo o id do usuário e verificando se o mesmo existe.
   const id: string = req.params.id;
   const pessoa: IPessoa1 | any = await pessoaS.findById(id);
   
   if(pessoa){
     try{
+      // criando um objeto pessoa para atualizar as informações recebidas pelo req.
       const atualizar:IPessoa = {
         ...req.body
       };
-  
+
+      // Buscando o usuário pelo o Id e caso exista atualiza senão retorna erro
       await pessoaS.findByIdAndUpdate(id,atualizar)
         .then((dados)=>{
           res.status(200).json({
@@ -92,13 +112,17 @@ export const atualizarPessoa = async(req: Request, res: Response) => {
         })
   
 
-    }catch(error){
+    }
+    // tratamento de erro.
+    catch(error){
       res.status(400).json({
         message: "Error",
         error
       })
     }
-  }else{
+  }
+  // Retornando se pessoa que foi buscada não existe.
+  else{
     res.status(404).json({
       message: 'Pessoa nao emcontrada'
     })
@@ -106,10 +130,13 @@ export const atualizarPessoa = async(req: Request, res: Response) => {
 }
 
 export const exluirPessoa = async(req:Request, res: Response) => {
+  // recebendo o Id para exclusão do usuário e verificando se o mesmo existe.
   const id: string = req.params.id; 
   const exist: IPessoa1 | any = await pessoaS.findById(id);
 
+  // Veirificando se existe o usuário.
   if(exist) {
+    // Busca o usuário e deleta pelo id senão achar retorna usuário nao encontrado.
     await pessoaS.findByIdAndDelete(id)
       .then((e)=>{
         res.status(200).json({
@@ -124,11 +151,11 @@ export const exluirPessoa = async(req:Request, res: Response) => {
         });
       });
 
-  }else{
+  }
+  // Pessoa não enxontrado.
+  else{
     res.status(404).json({
       message: 'Pessoa não encontrada'
     })
   }
 }
-//68ab8a8e9ec8be94fe0f6573
-//{"_id":{"$oid":"68ab7afffb04adc6b30956b1"},"nome":"Lígia","email":"ligia@gmail","endereco":"Rua E","data":{"criado":{"$date":{"$numberLong":"1756068607540"}},"atualizado":{"$date":{"$numberLong":"1756068607540"}}},"__v":{"$numberInt":"0"}}
