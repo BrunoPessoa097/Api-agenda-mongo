@@ -28,7 +28,7 @@ export const addPessoa = async(req: Request, res: Response) => {
     // Caso usuário e e-mail não exista.
     else{
       await pessoa.save();
-      res.status(200).json({
+      res.status(201).json({
         message: 'Pessoa inserida',
         inf: pessoa
       })
@@ -37,7 +37,7 @@ export const addPessoa = async(req: Request, res: Response) => {
   // Saída em caso de erro.
   catch(error){
     console.log(error);
-    res.status(400).json({
+    res.status(404).json({
       message: 'Problema ao cadastrar',
       error: error
     })
@@ -65,7 +65,7 @@ export const buscarPessoaId = async (req: Request, res: Response) => {
           inf: dados
         })
       }).catch((error)=>{
-        res.status(200).json({
+        res.status(404).json({
           message: 'Usuario nao encontado'
         })
       });
@@ -99,7 +99,7 @@ export const atualizarPessoa = async(req: Request, res: Response) => {
       // Buscando o usuário pelo o Id e caso exista atualiza senão retorna erro
       await pessoaS.findByIdAndUpdate(id,atualizar)
         .then((dados)=>{
-          res.status(200).json({
+          res.status(201).json({
             message: 'Dados Atualizados',
             inf: atualizar
           })
@@ -113,7 +113,7 @@ export const atualizarPessoa = async(req: Request, res: Response) => {
     }
     // tratamento de erro.
     catch(error){
-      res.status(400).json({
+      res.status(404).json({
         message: "Error",
         error
       })
@@ -137,7 +137,7 @@ export const exluirPessoa = async(req:Request, res: Response) => {
     // Busca o usuário e deleta pelo id senão achar retorna usuário nao encontrado.
     await pessoaS.findByIdAndDelete(id)
       .then((e)=>{
-        res.status(200).json({
+        res.status(201).json({
           message: 'Usuario deletado',
           inf: e
         })
