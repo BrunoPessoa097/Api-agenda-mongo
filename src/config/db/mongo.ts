@@ -15,8 +15,11 @@ const conn = async(): Promise<any> => {
   
   try {
     // Fazendo conexão com o banco de dados.
-    await mongoose.connect(url);
-    console.log('Banco conectado');
+    await mongoose.connect(url).then(()=>{
+      console.log('Banco de dados conectado');
+    }).catch((error)=>{
+      console.log('Erro ao conectar ao banco se dados')
+    })
   }catch(error){
     // Tratamento de erro.
     console.log('Error ao conectar');
