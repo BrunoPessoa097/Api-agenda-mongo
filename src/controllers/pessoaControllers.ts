@@ -61,12 +61,12 @@ export const buscarPessoaId = async (req: Request, res: Response) => {
     await pessoaS.findById(id)
       .then((dados)=>{
         res.status(200).json({
-          message: 'Usuario encontrado',
+          message: 'Usuário encontrado',
           inf: dados
         })
       }).catch((error)=>{
         res.status(404).json({
-          message: 'Usuario nao encontado'
+          message: 'Usuário não encontado'
         })
       });
   }
@@ -100,7 +100,7 @@ export const atualizarPessoa = async(req: Request, res: Response) => {
       await pessoaS.findByIdAndUpdate(id,atualizar)
         .then((dados)=>{
           res.status(201).json({
-            message: 'Dados Atualizados',
+            message: 'Dados atualizados',
             inf: atualizar
           })
         })
@@ -122,7 +122,7 @@ export const atualizarPessoa = async(req: Request, res: Response) => {
   // Retornando se pessoa que foi buscada não existe.
   else{
     res.status(404).json({
-      message: 'Pessoa nao emcontrada'
+      message: 'Pessoa não emcontrada'
     })
   }
 }
