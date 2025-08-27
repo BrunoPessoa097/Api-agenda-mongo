@@ -7,10 +7,14 @@
     "build": "tsc",
     "start": "npm run build && node dist/server js"
   },
-  "keywords": [],
+  "keywords": ["Typescript","API","ExpressJs","NodeJs"],
   "author": "Bruno Pessoa",
-  "license": "ISC",
-  "description": "",
+  "license": "MIT",
+  "description": "API CRUD para uma agenda de usuários",
+  "url": {
+    "linkedin": "https://www.linkedin.com/in/bruno-pessoa-097/",
+    "git": "https://github.com/BrunoPessoa097/api-agenda.git"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
