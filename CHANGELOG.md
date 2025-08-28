@@ -1,4 +1,5 @@
 # CHANGELOG
+Todas e quaisquer mudanças seram noticiadas aqui.
 
 ## [1.1.0] - 2025-08-27
 ### Adicionado
