@@ -16,8 +16,8 @@ _API RestFull_ com _CRUD(create, registre, update e delete)_, para manipulação
 12. [License](#license)
 
 ## Informações Sobre o Projeto
-* **Versão:** 1.0.0
-* **Status:** Executada
+* **Versão:** 1.1.0
+* **Status:** Concluída 
 * **Licença:** MIT
 
 ## Funcionabilidade 
@@ -28,6 +28,7 @@ _API RestFull_ com _CRUD(create, registre, update e delete)_, para manipulação
 * `GET /pessoa/{id}` - Buscar pessoa por ID.
 * `PUT /pessoa/{id}` - Atualizar usuário pelo ID.
 * `DELETE /pessoa/{id}` - Deletar o usuário usando o ID.
+* `/api-docs` - Documentação da _API_ via _swagger_.
 
 ## Tratamento de Erro nas Rotas
 Em cada _endpoint_ da _API_ em caso de erro irá retornar no seguinte formato:
@@ -80,6 +81,7 @@ A _API_ está garantida de ter as melhores práticas de segurança usando o `hel
 * [ECMAScript](https://ecma-international.org/publications-and-standards/standards/ecma-262/) - Especificação da linguagem Javascript.
 * [Helmet](https://helmetjs.github.io/) - _Middleware_ para segurança.
 * [MongoDB](https://www.mongodb.com/) - Banco de dados _NoSql_(banco de dados não relacional).
+* [Swagger](https://swagger.io/) - Conjunto de ferramentas para documentar _API RestFull_.
 
 ## Dependências
 * `express` - (versão: ^5.1.0) - _Framework web_ para Node js.
@@ -91,6 +93,8 @@ A _API_ está garantida de ter as melhores práticas de segurança usando o `hel
 * `cors` - (versão: ^2.8.5) - Mecanismo de segurança que permite acessar requisição de uma origem diferente.
 * `mongoose` - (versão: ^8.18.0) - Banco de dados NoSql(banco nao relacional).
 * `permissions-policy` - (versão: ^0.6.0) - Politica de permissões.
+* `swagger-jsdoc` - (versão: ^6.2.8) - JsDoc voltado para interagir com o swagger.
+* `swagger-ui-express` - (versão: ^5.0.1) - Biblioteca _swagger_ para interagir com o _Node express_.
 
 ## Como Iniciar o Projeto 
  1. Clone o projeto.
@@ -143,7 +147,7 @@ A _API_ está garantida de ter as melhores práticas de segurança usando o `hel
 ```
 
 ## _Endpoints_
-Todos os _endpoints_ abaixo seguem o princípio que retornaram sucesso, caso esteja em dúvida aual erro retornaria ver o [tratamento de erro nas rotas](#tratamemto-de-erro-nas-rotas).
+Todos os _endpoints_ abaixo seguem o princípio que retornaram sucesso, caso esteja em dúvida qual erro retornaria ver o [tratamento de erro nas rotas](#tratamemto-de-erro-nas-rotas).
 
 ### _Endpoin `/`
 * **Método:** GET
@@ -159,7 +163,7 @@ Todos os _endpoints_ abaixo seguem o princípio que retornaram sucesso, caso est
    }
   ```
   
-### _Endpoint `404`
+### _Endpoint_ `404`
 * **Método:** 404
 * **Descrição:** Rota não encontrada
 * **Exemplo da requisição:**
@@ -198,7 +202,7 @@ Todos os _endpoints_ abaixo seguem o princípio que retornaram sucesso, caso est
         }
       }
   ```
-### _Endpoin `/pessoa`
+### _Endpoint_ `/pessoa`
 * **Método:** GET
 * **Descrição:** Listar pessoas
 * **Exemplo da requisição:**
@@ -224,7 +228,7 @@ Todos os _endpoints_ abaixo seguem o princípio que retornaram sucesso, caso est
    }
   ```
   
-### _Endpoin `/pessoa/{id}`
+### _Endpoint_ `/pessoa/{id}`
 * **Método:** GET
 * **Descrição:** Buscar usuário.
 * **Requisitos:**
@@ -250,7 +254,7 @@ Todos os _endpoints_ abaixo seguem o princípio que retornaram sucesso, caso est
         }
       }
   ```
-### _Endpoin `/pessoa/{id}`
+### _Endpoint_ `/pessoa/{id}`
 * **Método:** PUT
 * **Descrição:** Atualizar usuário.
 * **Requisitos:**
@@ -274,7 +278,7 @@ Todos os _endpoints_ abaixo seguem o princípio que retornaram sucesso, caso est
       }
     }
   ```
-### _Endpoin `/pessoa/{id}`
+### _Endpoint_ `/pessoa/{id}`
 * **Método:** DELETE
 * **Descrição:** Pegar por id
 * **Requisitos:**
@@ -296,6 +300,8 @@ Todos os _endpoints_ abaixo seguem o princípio que retornaram sucesso, caso est
         }
       }
   ```
+### _Endpoint_ `/api-docs`
+* **Descrição:** Rota para testar, e fazer o teste de todas as rotas de maneira simples.
 
 ## Criado Por
 * **Nome**: Bruno Pessoa
