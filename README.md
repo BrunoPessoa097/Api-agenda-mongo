@@ -1,4 +1,4 @@
-# API RestFull de Registo de Pessoas.
+q# API RestFull de Registo de Pessoas.
 _API RestFull_ com _CRUD(create, registre, update e delete)_, para manipulação dos dados, feito em `Typescript`, `Node js`, `Express Js` e outras tecnologias, para afim de demostrar conhecimentos na manipulação de dados.
 
 ## Índice 
@@ -306,7 +306,7 @@ Todos os _endpoints_ abaixo seguem o princípio que retornaram sucesso, caso est
 ## Criado Por
 * **Nome**: Bruno Pessoa
 * **Área**: Desenvolver NodeJs|Typescript|Javascript
-* **Formado**: UNIGRANDE - Universidade da grande Fortaleza.
+* **Formado**: UNIGRANDE - Centro Universitário da grande Fortaleza.
 * **Curso**: Sistemas para _Internet_.
 * **Git Hub**: [github.com/BrunoPessoa097](https://github.com/BrunoPessoa097/api-agenda.git)
 * **LinkedIn**: [www.linkedin.com/in/bruno-pesoa-097](https://www.linkedin.com/in/bruno-pessoa-097/)
