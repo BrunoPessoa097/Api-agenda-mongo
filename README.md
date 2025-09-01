@@ -1,4 +1,4 @@
-q# API RestFull de Registo de Pessoas.
+# API RestFull de Registo de Pessoas.
 _API RestFull_ com _CRUD(create, registre, update e delete)_, para manipulação dos dados, feito em `Typescript`, `Node js`, `Express Js` e outras tecnologias, para afim de demostrar conhecimentos na manipulação de dados.
 
 ## Índice 
